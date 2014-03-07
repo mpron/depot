@@ -2,6 +2,14 @@ require 'test_helper'
 
 class ProductTest < ActiveSupport::TestCase
   fixtures :products
+
+  def new_product(image_url)
+    Product.new(title:       "My Book Title",
+                description: "yyy",
+                price:       1,
+                image_url:   image_url)
+  end
+
   test "product attributes must not be empty" do
     product = Product.new
     assert product.invalid?
@@ -11,30 +19,23 @@ class ProductTest < ActiveSupport::TestCase
     assert product.errors[:image_url].any?
   end
 
-test "product price must be positive" do
-    product = Product.new(title:       "My Book Title",
-                          description: "yyy",
-                          image_url:   "zzz.jpg")
-    product.price = -1
-    assert product.invalid?
-    assert_equal ["must be greater than or equal to 0.01"],
-      product.errors[:price]
+  test "product price must be positive" do
+      product = Product.new(title:       "My Book Title",
+                            description: "yyy",
+                            image_url:   "zzz.jpg")
+      product.price = -1
+      assert product.invalid?
+      assert_equal ["must be greater than or equal to 0.01"],
+        product.errors[:price]
 
-    product.price = 0
-    assert product.invalid?
-    assert_equal ["must be greater than or equal to 0.01"], 
-      product.errors[:price]
+      product.price = 0
+      assert product.invalid?
+      assert_equal ["must be greater than or equal to 0.01"], 
+        product.errors[:price]
 
-    product.price = 1
-    assert product.valid?
-  end
-
-  def new_product(image_url)
-    Product.new(title:       "My Book Title",
-                description: "yyy",
-                price:       1,
-                image_url:   image_url)
-  end
+      product.price = 1
+      assert product.valid?
+    end
 
   test "image url" do
     ok = %w{ fred.gif fred.jpg fred.png FRED.JPG FRED.Jpg
@@ -59,6 +60,20 @@ test "product price must be positive" do
     assert product.invalid?
     assert_equal [I18n.translate('errors.messages.taken')],
                  product.errors[:title]
+  end
+
+  test "product title is at least 7 characters long" do
+    product = Product.new(description: "yyy",
+                price:       1,
+                image_url:   "fred.gif")
+    
+    product.title = "Short"
+    assert product.invalid?
+    assert_equal ["is too short (minimum is 7 characters)"], 
+      product.errors[:title]
+
+    product.title = "Long Enough Title"
+    assert product.valid?, "#{product.title} should be valid"
   end
 
 end
