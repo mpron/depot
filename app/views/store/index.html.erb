@@ -3,12 +3,14 @@
 <% end %>
 
 <h1>Book Catalog</h1>
-
+<% if @count > 5 %>
+  <h4><%= pluralize(@count, 'visit') %> to the catalog page</h4>
+<% end %>
 <% cache ['store', Product.latest] do %>
   <% @products.each do |product| %>
     <% cache ['entry', product] do %>
       <div class="entry">
-        <%= image_tag(product.image_url) %>
+        <%= link_to image_tag(product.image_url), line_items_path(product_id: product), method: :post %>
         <h3><%= product.title %></h3>
         <%= sanitize(product.description) %>
         <div class="price_line">
