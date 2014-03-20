@@ -11,7 +11,6 @@ two:
   description: MyText
   image_url: MyString
   price: 9.99
-#START:ruby
 
 ruby: 
   title:       Programming Ruby 1.9
@@ -21,4 +20,3 @@ ruby:
     delivered fast, you should add Ruby to your toolbox.
   price:       49.50
   image_url:   ruby.png 
-#END:ruby

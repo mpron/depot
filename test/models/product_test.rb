@@ -37,7 +37,7 @@ class ProductTest < ActiveSupport::TestCase
       assert product.valid?
     end
 
-  test "image url" do
+  test "image url must be a gif png or jpg" do
     ok = %w{ fred.gif fred.jpg fred.png FRED.JPG FRED.Jpg
              http://a.b.c/x/y/z/fred.gif }
     bad = %w{ fred.doc fred.gif/more fred.gif.more }
@@ -51,6 +51,11 @@ class ProductTest < ActiveSupport::TestCase
     end
   end
 
+  test "image url must be unique" do
+    product = new_product(products(:ruby).image_url)
+    assert product.invalid?
+  end
+
   test "product is not valid without a unique title - i18n" do
     product = Product.new(title:       products(:ruby).title,
                           description: "yyy", 
@@ -60,6 +65,17 @@ class ProductTest < ActiveSupport::TestCase
     assert product.invalid?
     assert_equal [I18n.translate('errors.messages.taken')],
                  product.errors[:title]
+  end
+
+    test "product is not valid without a unique description - i18n" do
+    product = Product.new(title:       "My Book",
+                          description: products(:ruby).description, 
+                          price:       1, 
+                          image_url:   "fred.gif")
+
+    assert product.invalid?
+    assert_equal [I18n.translate('errors.messages.taken')],
+                 product.errors[:description]
   end
 
   test "product title is at least 7 characters long" do
