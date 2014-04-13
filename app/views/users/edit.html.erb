@@ -1,6 +1,32 @@
-<h1>Editing user</h1>
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+    <legend>Change Password</legend>
 
-<%= render 'form' %>
+    <div class="field">
+      <%= f.label :current_password %>
+      <%= f.password_field :current_password, size: 40 %>
+    </div>
+    <div class="field">
+      <%= f.label :password, 'New Password' %>
+      <%= f.password_field :password, size: 40  %>
+    </div>
+    <div>
+      <%= f.label :password_confirmation, 'Confirm New Password' %>
+      <%= f.password_field :password_confirmation, size: 40  %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+  </fieldset>
+<% end %>

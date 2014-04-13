@@ -40,11 +40,14 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    current_password = params[:user].delete(:current_password) 
+
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.authenticate(current_password) && @user.update(user_params)
         format.html { redirect_to users_url, notice: "User #{@user.name} was successfully updated." }
         format.json { head :no_content }
       else
+        @user.errors.add(:current_password, "for user is incorrect") unless @user.authenticate(current_password)
         format.html { render action: 'edit' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -54,7 +57,12 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
+    begin
+      @user.destroy
+        flash[:notice] = "User #{@user.name} deleted"
+      rescue StandardError => e
+        flash[:notice] = e.message
+      end
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }
