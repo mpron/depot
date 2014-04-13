@@ -2,6 +2,7 @@ require 'test_helper'
 
 class UserStoriesTest < ActionDispatch::IntegrationTest
   fixtures :products
+  fixtures :carts
   LineItem.delete_all
   Order.delete_all
   ruby_book = products(:ruby)
@@ -49,6 +50,34 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
   assert_equal 'Sam Ruby <depot@example.com>', mail[:from].value
   assert_equal "Pragmatic Store Order Confirmation", mail.subject
 
+
+### Seeing resources when authorized and not when unauthorized ####
+
+test "should fail on access of sensitive data" do
+    # login user
+    user = users(:one)
+    get "/login" 
+    assert_response :success
+    post_via_redirect "/login", name: user.name, password: 'secret'
+    assert_response :success
+    assert_equal '/admin', path
+
+    # look at a protected resource
+    get "/carts/12345" 
+    assert_response :success  
+    assert_equal '/carts/12345', path
+
+    # logout user
+    delete "/logout" 
+    assert_response :redirect
+    assert_template "/"      
+
+    #try to look at protected resource again, should be redirected to login page
+    get "/carts/12345" 
+    assert_response :redirect
+    follow_redirect!  
+    assert_equal '/login', path      
+  end
 
 
 end
