@@ -41,7 +41,7 @@
 // We use these to control various global styles
 // $body-bg: #fff;
 // $body-font-color: #222;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-family: "Montserrat", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
 // $body-font-style: normal;
 
@@ -54,9 +54,9 @@
 // $default-float: left;
 
 // We use these as default colors throughout
-$primary-color: #00BABA;
+$primary-color: #26A65B;
 // $secondary-color: #e7e7e7;
-// $alert-color: #f04124;
+$alert-color: #4B77BE;
 // $success-color: #43AC6A;
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
@@ -677,7 +677,7 @@ $primary-color: #00BABA;
 // $tabbar-header-margin: 0;
 
 // Off Canvas Menu Variables
-// $off-canvas-width: rem-calc(250);
+$off-canvas-width: rem-calc(318);
 // $off-canvas-bg: #333;
 
 // Off Canvas Menu List Variables
@@ -1074,12 +1074,12 @@ $primary-color: #00BABA;
 
 // These control the background color for the table and even rows
 // $table-bg: #fff;
-// $table-even-row-bg: #f9f9f9  ;
+$table-even-row-bg: #272727;
 
 // These control the table cell border style
-// $table-border-style: solid;
+$table-border-style: hidden;
 // $table-border-size: 1px;
-// $table-border-color: #ddd;
+// $table-border-color: #333;
 
 // These control the table head styles
 // $table-head-bg: #f5f5f5  ;
@@ -1091,7 +1091,7 @@ $primary-color: #00BABA;
 // These control the row padding and font styles
 // $table-row-padding: rem-calc(9 10);
 // $table-row-font-size: rem-calc(14);
-// $table-row-font-color: #222;
+$table-row-font-color: #ddd;
 // $table-line-height: rem-calc(18);
 
 // These are for controlling the display and margin of tables
@@ -1168,11 +1168,11 @@ $primary-color: #00BABA;
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-// $topbar-bg-color: #333;
+$topbar-bg-color: #34495E;
 // $topbar-bg: $topbar-bg-color;
 
 // Height and margin
-// $topbar-height: 45px;
+$topbar-height: 47px;
 // $topbar-margin-bottom: 0;
 
 // Controlling the styles for the title in the top bar
@@ -1194,13 +1194,13 @@ $primary-color: #00BABA;
 // $topbar-link-color-active: #fff;
 // $topbar-link-color-active-hover: #fff;
 // $topbar-link-weight: normal;
-// $topbar-link-font-size: rem-calc(13);
+$topbar-link-font-size: rem-calc(20);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
 // $topbar-link-bg: $topbar-bg;
-// $topbar-link-bg-hover: #272727;
+$topbar-link-bg-hover: #22313F;
 // $topbar-link-bg-active: $primary-color;
 // $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);
-// $topbar-link-font-family: $body-font-family;
+//$topbar-link-font-family: $body-font-family;
 // $topbar-link-text-transform: none;
 // $topbar-link-padding: $topbar-height / 3;
 

@@ -47,6 +47,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 # gem 'unicorn'
 
 gem 'foundation-rails'
+gem 'foundation-icons-sass-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

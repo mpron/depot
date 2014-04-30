@@ -24,7 +24,7 @@ es:
   layouts:
     application:
       title:       "Publicaciones"
-      home:        "Inicio"
+      home:        "Rails Publicaciones"
       questions:   "Preguntas"
       news:        "Noticias"
       contact:     "Contacto"

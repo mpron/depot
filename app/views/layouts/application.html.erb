@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
   <title>Online Book Store <%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
@@ -10,41 +11,65 @@
   <%= csrf_meta_tags %>
 </head>
 <body class='<%= controller.controller_name %>'>
-  <div id="banner">
-    <%= form_tag store_path, class: 'locale' do %>
-      <%= select_tag 'set_locale', 
-        options_for_select(LANGUAGES, I18n.locale.to_s),
-        onchange: 'this.form.submit()' %>
-    <%= submit_tag 'submit' %>
-    <% end %>
-    <%= image_tag("logo.png") %>
-    <%= @page_title || t('.title') %><!-- <label id="code.depot.e.title"/> -->
-  </div>
-  <div id="columns">
-    <div id="side">
-      <% if @cart %>
-        <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
-          <%= render @cart %>
-        <% end %>
-      <% end %>
-      <ul>
+  <nav class="top-bar" data-topbar>
+    <section class="top-bar-section">
+      <ul class="left">
         <li><%= link_to t('.home'), store_path %></li>
-        <li><a href="http://www..../faq"><%= t('.questions') %></a></li>
-        <li><a href="http://www..../news"><%= t('.news') %></a></li>
-        <li><a href="http://www..../contact"><%= t('.contact') %></a></li>
+          <% if session[:user_id] %>
+            <li><%= link_to 'Orders',   orders_path   %></li>
+            <li><%= link_to 'Products', products_path %></li>
+            <li><%= link_to 'Users',    users_path    %></li>
+          <% end %>
       </ul>
+      <ul class="right locale">
+        <li class="has-form">
+          <% if session[:user_id] %>
+            <%= button_to 'Logout', logout_path, method: :delete, class: "button" %>
+          <% else %>
+            <%= button_to 'Log In', login_path, class: "button" %>
+          <% end %>
+        </li>
+        <li class="divider"></li>
+        <li class="locale">
+          <%= form_tag store_path do %>
+            <%= select_tag 'set_locale', 
+              options_for_select(LANGUAGES, I18n.locale.to_s),
+              onchange: 'this.form.submit()' %>
+          <% end %>
+        </li>
+      </ul>
+    </section>
+  </nav>
+  <div class="off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
+      <nav class="tab-bar">
+        <section class="left-small">
+          <a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
+        </section>
 
-      <% if session[:user_id] %>
-        <ul>
-          <li><%= link_to 'Orders',   orders_path   %></li>
-          <li><%= link_to 'Products', products_path %></li>
-          <li><%= link_to 'Users',    users_path    %></li>
+        <section class="right tab-bar-section">
+          <h1 class="title"><i class="fi-arrow-left large"></i> Your Cart</h1>
+        </section>
+
+      </nav>
+
+      <aside class="left-off-canvas-menu">
+        <ul class="off-canvas-list">
+          <li><label>Line items</label></li>
+          <% if @cart %>
+            <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+              <%= render @cart %>
+            <% end %>
+          <% end %>
         </ul>
-        <%= button_to 'Logout', logout_path, method: :delete %>
-      <% end %>
-    </div>
-    <div id="main">
-      <%= yield %>
+      </aside>
+
+      <section class="main-section main_content">
+        <%= yield %>
+      </section>
+
+    <a class="exit-off-canvas"></a>
+
     </div>
   </div>
   <%= javascript_include_tag "application" %>

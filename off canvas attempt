@@ -1,0 +1,32 @@
+<div class="off-canvas-wrap" data-offcanvas>
+  <div class="inner-wrap">
+    <nav class="tab-bar">
+      <section class="left-small">
+        <a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
+      </section>
+
+      <section class="right tab-bar-section">
+        <h1 class="title">Your Cart</h1>
+      </section>
+
+    </nav>
+
+    <aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        <li><label>Line items</label></li>
+        <% if @cart %>
+          <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+            <%= render @cart %>
+          <% end %>
+        <% end %>
+      </ul>
+    </aside>
+
+    <section class="main-section main">
+      <%= yield %>
+    </section>
+
+  <a class="exit-off-canvas"></a>
+
+  </div>
+</div>

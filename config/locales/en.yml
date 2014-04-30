@@ -19,7 +19,7 @@ en:
   layouts:
     application:
       title:       "Our Bookshelf"
-      home:        "Home"
+      home:        "Rails Bookshelf"
       questions:   "Questions"
       news:        "News"
       contact:     "Contact"
