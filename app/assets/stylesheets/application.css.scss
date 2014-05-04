@@ -30,7 +30,6 @@
   background: #9c9;
   padding: 10px;
   border-bottom: 2px solid;
-  font: small-caps 40px/40px "Times New Roman", serif;
   color: #282;
   text-align: center;
 
@@ -45,24 +44,23 @@
   padding: 1em;
   margin-bottom: 2em;
   background-color: #f0f0f0;
-  font: bold smaller sans-serif;
 }
 
 
 .depot_form {
   fieldset {
-    background: #efe;
+    background: #999;
 
     legend {
-      color: #dfd;
-      background: #141;
-      font-family: sans-serif;
+      color: #fff;
+      background: #333;
       padding: 0.2em 1em;
     }
   }
 
   form {
     label {
+      color: #000;
       width: 5em;
       float: left;
       text-align: right;

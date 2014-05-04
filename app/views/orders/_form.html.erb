@@ -1,6 +1,6 @@
 <%= form_for(@order) do |f| %>
   <% if @order.errors.any? %>
-    <div id="error_explanation">
+    <div data-alert class="alert-box warning" id="error_explanation">
       <h2><%=raw t('errors.template.header', count: @order.errors.count, model: t('activerecord.models.order')) %>.</h2>
       <p><%= t('errors.template.body') %></p>
 
@@ -29,6 +29,6 @@
     <%= f.select :pay_type, Order::PAYMENT_TYPES, prompt: t('.pay_prompt_html') %>
   </div>
   <div class="actions">
-    <%= f.submit t('.submit') %>
+    <%= f.submit t('.submit'), class: "button secondary" %>
   </div>
 <% end %>

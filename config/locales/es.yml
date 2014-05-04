@@ -28,6 +28,11 @@ es:
       questions:   "Preguntas"
       news:        "Noticias"
       contact:     "Contacto"
+      your_cart:   "Carrito de la Compra"
+      line_items_html: "Art&iacute;culos de L&iacute;nea"
+      orders_html: "&Oacute;rdenes"
+      products:    "Productos"
+      users:       "Usuarios"
 
   carts:
     cart:
@@ -52,3 +57,4 @@ es:
       submit:       "Realizar Pedido"
 
   thanks:          "Gracias por su pedido"
+  added_html:      "L&iacute;nea de art&iacute;culo agregado a tu cesta"

@@ -1,11 +1,10 @@
 <% if notice %>
-<p id="notice"><%= notice %></p>
+  <div data-alert class="alert-box success round" ><%= notice %>
+    <a href="#" class="close">&times;</a>
+  </div>
 <% end %>
 
 <h1><%= t('.title_html') %></h1>
-<% if @count > 5 %>
-  <h4><%= pluralize(@count, 'visit') %> to the catalog page</h4>
-<% end %>
 <% cache ['store', Product.latest] do %>
   <% @products.each do |product| %>
     <% cache ['entry', product] do %>
@@ -15,9 +14,12 @@
         <%= sanitize(product.description) %>
         <div class="price_line">
           <span class="price"><%= number_to_currency(product.price) %></span>
-          <%= button_to t('.add_html'), line_items_path(product_id: product), remote: true, class: "button tiny" %>
+          <%= button_to t('.add_html'), line_items_path(product_id: product), class: "button tiny", remote: true %>
         </div>
       </div>
     <% end %>
   <% end %>
+<% end %>
+<% if @count > 5 %>
+  <h5><%= pluralize(@count, 'visit') %> to the catalog page</h5>
 <% end %>

@@ -23,6 +23,11 @@ en:
       questions:   "Questions"
       news:        "News"
       contact:     "Contact"
+      your_cart:   "Your Cart"
+      line_items_html: "Line Items"
+      orders_html: "Orders"
+      products:    "Products"
+      users:       "Users"
 
   carts:
     cart:
@@ -47,3 +52,4 @@ en:
       submit:       "Place Order"
 
   thanks:          "Thank you for your order"
+  added_html:      "Line item added to your cart"
