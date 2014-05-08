@@ -63,14 +63,14 @@
       color: #000;
       width: 5em;
       float: left;
-      text-align: right;
-      padding-top: 0.2em;
+      text-align: left;
+      padding-top: 1em;
       margin-right: 0.1em;
       display: block;
     }
 
     select, textarea, input {
-      margin-left: 0.5em;
+      margin: 0.7em 0.7em 0.5em 0;
     }
 
     .submit {
